@@ -1034,20 +1034,6 @@ def make_supervised_data_module(tokenizer: transformers.PreTrainedTokenizer,
                                     data_path=lingoqa_data_path,
                                     data_args=data_args)
         train_dataset = ConcatDataset([carla_dataset, lingoqa_dataset])
-    # elif data_args.dataset_name == 'joint_LingoQA_Carla_BDDX':
-    #     carla_data_path = data_args.data_path
-    #     carla_dataset = CarlaQADataset(tokenizer=tokenizer,
-    #                                    data_path=carla_data_path,
-    #                                    data_args=data_args)
-    #     lingoqa_data_path = data_args.lingoqa_data_path
-    #     lingoqa_dataset = CarlaQADataset(tokenizer=tokenizer,
-    #                                 data_path=lingoqa_data_path,
-    #                                 data_args=data_args)
-    #     drivelm_data_path = data_args.drivelm_data_path
-    #     drive_dataset = CarlaQADataset(tokenizer=tokenizer,
-    #                                 data_path=drivelm_data_path,
-    #                                 data_args=data_args)
-    #     train_dataset = ConcatDataset([carla_dataset, lingoqa_dataset, drive_dataset])
     elif data_args.dataset_name == 'joint_LingoQA_Carla_DRAMA':
         carla_data_path = data_args.data_path
         carla_dataset = CarlaQADataset(tokenizer=tokenizer,
@@ -1064,24 +1050,6 @@ def make_supervised_data_module(tokenizer: transformers.PreTrainedTokenizer,
         drama_repeat_factor = data_args.drama_data_repeat
         drama_dataset = drama_repeat_factor * drama_dataset
         train_dataset = ConcatDataset([carla_dataset, lingoqa_dataset, drama_dataset])
-    elif data_args.dataset_name == 'joint_LingoQA_Carla_DRAMA_DriveLM':
-        carla_data_path = data_args.data_path
-        carla_dataset = CarlaQADataset(tokenizer=tokenizer,
-                                       data_path=carla_data_path,
-                                       data_args=data_args)
-        lingoqa_data_path = data_args.lingoqa_data_path
-        lingoqa_dataset = CarlaQADataset(tokenizer=tokenizer,
-                                    data_path=lingoqa_data_path,
-                                    data_args=data_args)
-        drivelm_data_path = data_args.drivelm_data_path
-        drivelm_dataset = CarlaQADataset(tokenizer=tokenizer,
-                                    data_path=drivelm_data_path,
-                                    data_args=data_args)
-        drama_data_path = data_args.drama_data_path
-        drama_dataset = CarlaQADataset(tokenizer=tokenizer,
-                                    data_path=drama_data_path,
-                                    data_args=data_args)
-        train_dataset = ConcatDataset([carla_dataset, lingoqa_dataset, drama_dataset, drivelm_dataset])
     
     data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
     return dict(train_dataset=train_dataset,

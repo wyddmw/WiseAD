@@ -1,6 +1,6 @@
 from scripts.inference import inference_once
 model_path = 'wyddmw/WiseAD'
-image_file = './assets/'
+image_file = './demo/'
 prompt_str = 'Are there any zebra crossings ahead?\n'
 
 args = type('Args', (), {
