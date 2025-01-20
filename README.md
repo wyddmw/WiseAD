@@ -15,7 +15,7 @@ Nanyang Technology University<sup>1</sup>, Zhejiang University<sup>2</sup>
 *Equal Contributions, †Corresponding Author
 
 <image src="./assets/framework.png"/><br>
-An overview of the framework of our WiseAd.
+An overview of the framework of our WiseAD.
 </div>
 
 ## ✨Capabilities
