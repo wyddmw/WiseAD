@@ -5,7 +5,12 @@ WiseAD: Knowledge Augmented End-to-End Autonomous Driving with Vision-Language M
 </h1>
 
 <p align="center">
-<a href=https://arxiv.org/abs/2412.09951><img src="https://img.shields.io/badge/ArXiv-2412.19505-%23840707.svg" alt="ArXiv"></a>
+<!-- <a href=https://arxiv.org/abs/2412.09951><img src="https://img.shields.io/badge/ArXiv-2412.09951-%23840707.svg" alt="ArXiv"></a> -->
+
+[![arxiv paper](https://img.shields.io/badge/arXiv-Paper-red)](https://arxiv.org/abs/2412.09951)
+[![🤗 HuggingFace models](https://img.shields.io/badge/HuggingFace🤗-Models-orange)](https://huggingface.co/wyddmw/WiseAD)
+[![🤗 HuggingFace datasets](https://img.shields.io/badge/HuggingFace🤗-Datasets-orange)](https://huggingface.co/datasets/wyddmw/WiseAD_training_data)
+
 </p>
 
 Songyan Zhang<sup>1*</sup>, Wenhui Huang<sup>1*</sup>, Zihui Gao<sup>2</sup>, Hao Chen<sup>2</sup>, Lv Chen<sup>1†</sup>
@@ -48,23 +53,79 @@ Our WiseAD is now available at [huggingface](https://huggingface.co/wyddmw/WiseA
     pip install -r requirements.txt
     ```
 
-## 🗝️ Quick Start
 
+## 🗝️ Quick Start
 #### Example of answering driving-related questions.
 
 ```python
 python run_infr.py
 ```
 
+## 🪜 Training & Evaluation
+
+### Datasets
+
+The datasets used to train WiseAD are as follows:
+
+* [CarlaDataset](https://huggingface.co/datasets/OpenDILabCommunity/LMDrive)
+* [DRAMA](https://usa.honda-ri.com/drama)
+* [LingoQA](https://github.com/wayveai/LingoQA)
+
+We provide our training data jsons on the [huggingface](https://huggingface.co/datasets/wyddmw/WiseAD_training_data). Note that for the DRAMA dataset, users are required to apply for the permission with an application email. The datasets are organized in the following structure:
+
+```
+data
+├── carla
+│   ├── DATASET
+│   │   ├── routes_town01_long_w1...
+│   │   └── routes_town01_long_w2...
+│   └── carla_qa.json
+├── DRAMA
+│   ├── drama_data
+│   │    ├── combined
+│   │    │   ├── 2020-0127-132751
+│   │    │   ├── 2020-0129-105040
+│   │    │   └── ...
+│   └── DRAMA_qa.json
+├── LingoQA
+│   ├── action
+│   │   └── images
+│   ├── evaluation
+│   │   └── images
+│   ├── scenery
+│   │   └── images
+│   ├── training_data.json
+│   └── evaluation_data.json
+```
+
+It is recommended to symlink your dataset root to `data`:
+
+### Launch training with one click!
+
+```shell
+bash launch.sh
+```
+
+### Evaluate on the LingoQA dataset.
+
+```shell
+sh eval/LingoQA/eval_lingoqa.sh /path/to/WiseAD/checkpoint /path/to/save/predictions
+# An example: 
+# sh eval/LingoQA/eval_lingoqa.sh wyddmw/WiseAD /home/spyder/WiseAD/eval_results
+```
+
+The predictions will be saved to the /path/to/save/predictions/LingoQA_results.json and obtain the Lingo-Judge metric.
+
 ## 🔨 TODO LIST
 
 - [✓] Release hugging face model and inference demo.
+- [✓] Training data and code (coming soon).
 - [ ] Carla closed-loop evaluation (coming soon).
-- [ ] Training data and code (coming soon).
 
 ## Reference
 
 We appeciate the awesome open-source projects of [MobileVLM](https://github.com/Meituan-AutoML/MobileVLM.git) and [LMDrive](https://github.com/opendilab/LMDrive).
+
 
 ## ✏️ Citation
 

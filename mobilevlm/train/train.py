@@ -13,7 +13,8 @@ from torch.utils.data import Dataset, ConcatDataset
 from mobilevlm.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from mobilevlm.train.trainer import VLMTrainer
 from mobilevlm import conversation as conversation_lib
-# from mobilevlm.model.mobilellama import MobileLlamaForCausalLM
+from mobilevlm.model.mobilellama import MobileLlamaForCausalLM
+
 from mobilevlm.utils import tokenizer_image_token
 
 from typing import Union, List
@@ -58,8 +59,6 @@ class DataArguments:
     drama_data_repeat: int = 1
     carla_repeat_factor: int = 2
     drama_data_path: str = field(default=None)
-    drivelm_data_path: str = field(default=None)
-
 
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
@@ -1082,12 +1081,6 @@ def train():
                 bnb_4bit_quant_type=training_args.quant_type # {'fp4', 'nf4'}
             )
         ))
-
-    if model_args.task_name == 'agent':
-        print('load llm agent model')
-        from mobilevlm.model.mobilellama_agent import MobileLlamaForCausalLM
-    else:
-        from mobilevlm.model.mobilellama import MobileLlamaForCausalLM
 
     if model_args.vision_tower is not None:
         if 'mpt' in model_args.model_name_or_path:

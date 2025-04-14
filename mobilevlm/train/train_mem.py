@@ -13,13 +13,5 @@ from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
-def attach_debugger():
-    import debugpy
-    debugpy.listen(5678)
-    print("Waiting for debugger!")
-    debugpy.wait_for_client()
-    print("Attached!")
-
 if __name__ == "__main__":
-    # attach_debugger()
     train()

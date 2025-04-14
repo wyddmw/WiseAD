@@ -103,8 +103,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-data/
-data
+data/*
 .vscode
 .idea
 .DS_Store
@@ -127,24 +126,9 @@ outputs
 w
 
 # pretrained models
-MobileLLaMA-1.4B-Chat/
-MobileVLM_V2-1.7B/
-clip-vit-large-patch14-336/
 *.txt
-LingoQA/
 data/
-pretrained_models/
-results/
-training_data.json
 wandb/
-lingoQA.finetune/
-Carla*
-lingoQA.finetune
-carla_text_planning/
-results*
 *.npy
-birdview_v2_cache/
-carla_text_planning_3B/
-LingoQA_finetune/
-carla_text_planning*
 *.json
+eval_results/
